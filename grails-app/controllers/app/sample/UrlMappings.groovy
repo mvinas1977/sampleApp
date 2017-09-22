@@ -1,4 +1,4 @@
-package sampleapp
+package app.sample
 
 class UrlMappings {
 

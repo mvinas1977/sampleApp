@@ -1,4 +1,4 @@
-package sampleapp
+package app.sample
 
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration
 import org.springframework.context.annotation.ComponentScan
@@ -9,9 +9,12 @@ import grails.boot.config.GrailsAutoConfiguration
 
 @Configuration
 @EnableAutoConfiguration
-@ComponentScan(basePackages = ['app.sample'])
+@ComponentScan
 class Application extends GrailsAutoConfiguration {
     static void main(String[] args) {
         GrailsApp.run(Application, args)
     }
+
+
+    
 }

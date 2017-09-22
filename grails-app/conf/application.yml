@@ -81,6 +81,12 @@ grails:
                 scriptlets: html
                 taglib: none
                 staticparts: none
+    neo4j:
+        default:
+            mapping:
+                id:
+                    generator: assigned
+
 endpoints:
     jmx:
         unique-names: true

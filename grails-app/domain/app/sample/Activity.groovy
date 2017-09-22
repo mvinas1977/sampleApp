@@ -1,9 +1,10 @@
 package app.sample
 
+import grails.neo4j.Neo4jEntity
 import grails.persistence.Entity
 
 @Entity
-class Activity {
+class Activity implements Neo4jEntity<Activity> {
 
     static mapWith = "neo4j"
 

@@ -1,17 +1,20 @@
 package app.sample
 
+import grails.neo4j.Neo4jEntity
 import grails.persistence.Entity
 
 @Entity
-class Person {
+class Person implements Neo4jEntity<Person> {
 
     static mapWith = "neo4j"
 
     String name
     Activity principalActivity
-
-    static hasMany = [phones: Phone]
+    Date lastUpdated
+    Date dateCreated
     
+    static hasMany = [phones: Phone]
+
     static constraints = {
         name nullable: false, blank: false
         principalActivity nullable: true
@@ -19,6 +22,6 @@ class Person {
 
     static mapping = {
         dynamicAssociations true
-        phones cascade: "all-delete-orphan"
+        phones cascade: "all-delete-orphan", lazy: false, fetch: "eager"
     }
 }

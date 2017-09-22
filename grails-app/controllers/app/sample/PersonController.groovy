@@ -1,8 +1,11 @@
 package app.sample
 
+import grails.gorm.transactions.Transactional
+
+@Transactional
 class PersonController {
 
-    def index() { }
+    def index() {}
 
     def removePerson1Phone() {
 
@@ -17,13 +20,87 @@ class PersonController {
 
     }
 
-    def setsToNullADynamicAssociation() {
+    def removeOneToOneAssociation() {
 
-        Person person1 = Person.findByName('Person 4')
+        Person person1 = Person.findByName('Person 1')
         assert person1
 
-        person1.mainPhone = null
+        assert person1.principalActivity
+
+        person1.principalActivity = null
         person1.save()
+    }
+
+    def addsANewPhoneToPerson1() {
+
+        Person person1 = Person.findByName('Person 1')
+        assert person1
+
+        Phone aPhone = Phone.findByNumber('4452-1227')
+        assert aPhone
+
+        assert person1.principalActivity
+
+        person1.addToPhones(number: '6777-8821')
+        person1.addToPhones(aPhone)
+        person1.save()
+    }
+
+    def changeOneToOneAssociation() {
+
+        Person person1 = Person.findByName('Person 1')
+        assert person1
+
+        assert person1.principalActivity
+
+        person1.principalActivity = new Activity(description: "other activity")
+        person1.save()
+    }
+
+    def setsRemoveADynamicOneToOneAssociation() {
+
+        Person person4 = Person.findByName('Person 4')
+        assert person4
+
+        assert person4.mainPhone
+
+        person4.mainPhone = null
+        person4.save()
+
+    }
+
+    def removesADynamicOneToManyAssociationSettingToNull() {
+
+        Person person4 = Person.findByName('Person 1')
+        assert person4
+
+        assert person4.secondaryActivies
+
+        person4.secondaryActivies = null
+        person4.save()
+
+    }
+
+    def updatesPerson1Name() {
+        Person person1 = Person.findByName('Person 1')
+
+        person1.name = 'Person One'
+        person1.save()
+    }
+
+    /*
+     * Validates issue 
+     */
+
+    def removesADynamicOneToManyAssociationClearingIt() {
+
+        Person person4 = Person.findByName('Person 1')
+        assert person4
+
+        assert person4.secondaryActivies
+
+        person4.secondaryActivies.clear()
+        person4.save()
 
     }
 }
