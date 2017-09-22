@@ -22,6 +22,6 @@ class Person implements Neo4jEntity<Person> {
 
     static mapping = {
         dynamicAssociations true
-        phones cascade: "all-delete-orphan", lazy: false, fetch: "eager"
+        phones cascade: "all-delete-orphan" //, lazy: false, fetch: "eager"
     }
 }

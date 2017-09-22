@@ -103,4 +103,24 @@ class PersonController {
         person4.save()
 
     }
+
+    def checkLazyLoading() {
+
+        log.debug("Starting lazy loading check....")
+        Person person1 = Person.findByName('Person 1')
+        assert person1
+        log.debug('person1 loaded')
+        log.debug("\naccessing principalActivity (one to one defined by a property) ...\n")
+        log.debug(person1.principalActivity.toString())
+        log.debug("\naccessing phones (one to many defined by a property) ...\n")
+        log.debug(person1.phones.toString())
+        log.debug("\naccessing secondaryActivies (one to many dynamic)...\n")
+        log.debug(person1.secondaryActivies.toString())
+        log.debug("\nend first run accessing properties again to validate that there is no additional queries executed\n")
+        log.debug(person1.principalActivity.toString())
+        log.debug(person1.phones.toString())
+        log.debug(person1.secondaryActivies.toString())
+        log.debug("END. Good Bye")
+        respond(message: 'ok')
+    }
 }

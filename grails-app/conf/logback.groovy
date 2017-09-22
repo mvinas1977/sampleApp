@@ -33,4 +33,7 @@ if (Environment.isDevelopmentMode() && targetDir != null) {
     }
     logger("StackTrace", ERROR, ['FULL_STACKTRACE'], false)
 }
+
+logger("org.grails.datastore.gorm.neo4j", DEBUG, ['STDOUT'], false)
+logger("app.sample", DEBUG, ['STDOUT'], false)
 root(ERROR, ['STDOUT'])
