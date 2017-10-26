@@ -1,3 +1,4 @@
 json {
-    attr2 "template index2"
+    attr2a "template index2 attr2a"
+    attr2b "template index2 attr2b"
 }
