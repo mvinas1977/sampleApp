@@ -1,0 +1,5 @@
+inherits template:"/person/index1"
+
+json {
+    attr "view index"
+}
